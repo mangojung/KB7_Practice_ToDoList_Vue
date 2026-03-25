@@ -5,7 +5,7 @@
       <div class="input-group">
         <input
           type="text"
-          placeholder="..."
+          placeholder="Please Type What to do"
           v-model="todo"
           @keyup.enter="addTodoHandler"
         />
@@ -18,14 +18,14 @@
 
 <script>
 export default {
-  name: 'InputTodo',
+  name: "InputTodo",
   data() {
     return {
-      todo: '',
+      todo: "",
     };
   },
   //이벤트 이름 명시
-  emits: ['add-todo'],
+  emits: ["add-todo"],
 
   //todo 추가하고 입력창 초기화 안되는 문제
   // this.todo = "";
@@ -33,10 +33,10 @@ export default {
   methods: {
     addTodoHandler() {
       if (this.todo.length >= 1) {
-        console.log('addTodoHandler() 함수 실행');
+        console.log("addTodoHandler() 함수 실행");
 
-        this.$emit('add-todo', this.todo);
-        this.todo = '';
+        this.$emit("add-todo", this.todo);
+        this.todo = "";
       }
     },
   },

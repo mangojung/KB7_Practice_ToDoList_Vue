@@ -1,5 +1,7 @@
 <template>
-  <div>
+  <div
+    style="margin: 0 10% 4px 10%; display: flex; justify-content: space-between"
+  >
     <span>전체 todo 개수: {{ cnt[0] }}</span>
     <span>완료 todo 개수: {{ cnt[1] }}</span>
     <span>미완료 todo 개수: {{ cnt[2] }}</span>
@@ -8,7 +10,7 @@
 
 <script>
 export default {
-  name: 'TodoStatus',
-  props: ['cnt'],
+  name: "TodoStatus",
+  props: ["cnt"],
 };
 </script>

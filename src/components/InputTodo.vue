@@ -2,9 +2,10 @@
   <!-- input 필드 - 버튼 컴포넌트 -->
   <div class="row mb-3">
     <div class="col">
-      <div class="input-group">
+      <div class="input-group todo-input-group">
         <input
           type="text"
+          class="todo-input"
           placeholder="Please Type What to do"
           v-model="todo"
           @keyup.enter="addTodoHandler"
@@ -16,29 +17,32 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "InputTodo",
-  data() {
-    return {
-      todo: "",
-    };
-  },
-  //이벤트 이름 명시
-  emits: ["add-todo"],
+<script setup>
+import { ref } from "vue";
 
-  //todo 추가하고 입력창 초기화 안되는 문제
-  // this.todo = "";
-  // 핸들링 함수 마지막에 문자열 초기화하기
-  methods: {
-    addTodoHandler() {
-      if (this.todo.length >= 1) {
-        console.log("addTodoHandler() 함수 실행");
+const todo = ref("");
 
-        this.$emit("add-todo", this.todo);
-        this.todo = "";
-      }
-    },
-  },
-};
+const emit = defineEmits(["add-todo"]);
+
+// todo 추가하고 입력창 초기화
+function addTodoHandler() {
+  if (todo.value.length >= 1) {
+    console.log("addTodoHandler() 함수 실행");
+
+    emit("add-todo", todo.value);
+    todo.value = "";
+  }
+}
 </script>
+
+<style scoped>
+.todo-input-group {
+  display: flex;
+  width: 100%;
+}
+
+.todo-input {
+  flex: 1;
+  min-width: 0;
+}
+</style>

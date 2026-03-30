@@ -8,9 +8,11 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "TodoStatus",
-  props: ["cnt"],
-};
+<script setup>
+defineProps({
+  cnt: {
+    type: Array,
+    required: true,
+  },
+});
 </script>

@@ -4,26 +4,27 @@
       v-for="todoItem in todoList"
       :key="todoItem.id"
       :todoItem="todoItem"
-      @delete-todo="$emit('delete-todo', $event)"
-      @toggle-completed="$emit('toggle-completed', $event)"
+      @delete-todo="emit('delete-todo', $event)"
+      @toggle-completed="emit('toggle-completed', $event)"
+      @update-due-date="emit('update-due-date', $event)"
     />
   </ul>
 </template>
 
-<script>
-import TodoListItem from './TodoListItem.vue';
+<script setup>
+import TodoListItem from "./TodoListItem.vue";
 
-export default {
-  name: 'TodoList',
-  // TodoListItem  -> TodoList -> App 토스
-  components: { TodoListItem },
-  props: {
-    todoList: {
-      type: Array,
-      required: true,
-    },
+// TodoListItem -> TodoList -> App 토스
+defineProps({
+  todoList: {
+    type: Array,
+    required: true,
   },
+});
 
-  emits: ['delete-todo', 'toggle-completed'],
-};
+const emit = defineEmits([
+  "delete-todo",
+  "toggle-completed",
+  "update-due-date",
+]);
 </script>
